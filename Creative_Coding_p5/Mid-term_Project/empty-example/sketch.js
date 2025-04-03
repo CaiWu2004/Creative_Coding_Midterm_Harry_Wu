@@ -4,6 +4,7 @@ let Ahah;
 let Joker;
 let Star;
 let Multiply;
+let progress = 0;
 var ball = {
   x: 300,
   y: 200,
@@ -40,48 +41,55 @@ function changingSlides() {
   if (option == 0) {
     basketball01();
     mirrors[0].show();
+    background(218, 222, 255, 40);
   } else if (option == 1) {
     nightmareVoid();
   } else if (option == 2) {
     nightmareVoid();
     //background(224, 74, 60, 80);
     Joker.cryingMask();
-    // Joker.run2();
+    Joker.run2();
   } else if (option == 3) {
     nightmareVoid();
     Joker.cryingMask();
-    // Joker.run2();
+    Joker.run2();
     Star.faceless();
-    // Star.move();
+    Star.move();
   } else if (option == 4) {
     nightmareVoid();
     Joker.cryingMask();
-    // Joker.run2();
+    Joker.run2();
     Star.faceless();
-    // Star.move();
+    Star.move();
     Multiply.cannonfodder();
-    // Multiply.loc();
+    Multiply.loc();
   } else if (option == 5) {
     nightmareVoid();
     Joker.cryingMask();
-    // Joker.run2();
+    Joker.run2();
     Star.faceless();
-    // Star.move();
+    Star.move();
     Multiply.cannonfodder();
-    // Multiply.loc();
+    Multiply.loc();
     Multiply.cannonfodder();
-    // Multiply.loc2();
+    Multiply.loc2();
   } else if (option == 6) {
     nightmareVoid();
     Joker.cryingMask();
-    // Joker.run2();
+    Joker.run2();
     Star.faceless();
-    // Star.move();
+    Star.move();
     Multiply.cannonfodder();
-    // Multiply.loc();
+    Multiply.loc();
     Multiply.cannonfodder();
-    // Multiply.loc2();
-    background(224, 74, 60, 80);
+    Multiply.loc2();
+    // background(224, 74, 60, 80);
+    progress += 1;
+    let limit = (progress / (width * 2)) * width;
+    for (let x = 0; x < limit; x += 1) {
+      stroke(224, 74, 60, 40);
+      line(x, 0, x, height);
+    }
   } else if (option == 7) {
     basketball01();
     mirrors[0].show();
@@ -90,6 +98,14 @@ function changingSlides() {
     basketball();
   } else if (option == 9) {
     angryVision();
+    background(224, 74, 60, 80);
+    progress += 1;
+    let limit = (progress / (width * 2)) * width;
+    for (let x = 0; x < limit; x += 1) {
+      strokeWeight(10);
+      stroke(255, 255, 255, 20);
+      line(x, 0, x, height);
+    }
   }
 }
 
@@ -145,18 +161,18 @@ function nightmareVoid() {
   background(0);
   // mask1
   Ahah.display();
-  // Ahah.run();
+  Ahah.run();
   // mask2
-  //Joker.cryingMask();
-  //Joker.run2();
+  // Joker.cryingMask();
+  // Joker.run2();
   // mask3
-  //Star.faceless();
-  //Star.move();
+  // Star.faceless();
+  // Star.move();
   // mask 4
-  //Multiply.cannonfodder();
-  //Multiply.loc();
-  //Multiply.cannonfodder();
-  //Multiply.loc2();
+  // Multiply.cannonfodder();
+  // Multiply.loc();
+  // Multiply.cannonfodder();
+  // Multiply.loc2();
 }
 
 class mask {
@@ -199,7 +215,7 @@ class mask {
     ellipse(this.x - 60, this.y + 10, r / 6);
 
     if (this.x > width) {
-      this.x = 500;
+      this.x = 0;
     }
   }
 
@@ -247,7 +263,10 @@ class mask {
       this.y - 200 / 2
     );
 
-    arc(this.x, this.y + 50, 90, 90, 0, QUARTER_PI + PI, PIE, 5);
+    // arc(this.x, this.y + 50, 90, 90, 0, QUARTER_PI + PI, PIE, 5);
+    ellipse(this.x, this.y + 80, 90, 90);
+    fill(125);
+    ellipse(this.x, this.y + 70, 80, 80);
   }
 
   // mask 4-...
@@ -272,6 +291,10 @@ class mask {
     fill(125);
     ellipse(this.x - 140, this.y + 50, r / 2);
     ellipse(this.x - 180, this.y + 50, r / 4);
+
+    if (this.y > height) {
+      this.y = 40;
+    }
   }
   // Increase the this.y value over time
   run() {
@@ -289,12 +312,12 @@ class mask {
 
   loc() {
     this.x = windowWidth - 300;
-    this.y = windowHeight / 1.5 + 260;
+    this.y = windowHeight / 1.5 - 400;
   }
 
   loc2() {
     this.x = windowWidth / 8;
-    this.y = windowHeight / 1.5 + 180;
+    this.y = windowHeight / 1.5 + 100;
   }
 }
 
